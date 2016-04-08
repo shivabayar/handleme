@@ -17,10 +17,8 @@ import os
 
 PROJECT_DIR = os.path.split(os.path.split(os.path.abspath(__file__))[0])[0]
 BASE_DIR = os.path.split(os.path.split(os.path.abspath(__file__))[0])[0]
-print BASE_DIR
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
-print TEMPLATE_DIR
 OUT_DIR = os.path.join(BASE_DIR, "out")
 
 
@@ -102,12 +100,12 @@ ROOT_URLCONF = 'twitter_handler.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'twitter_handler.wsgi.application'
 
-TEMPLATE_DIRS = (
-   # Put strings here, like "/home/html/django_templates"
-   # Always use forward slashes, even on Windows.
-   # Don't forget to use absolute paths, not relative paths.
-   TEMPLATE_DIR,
-)
+# TEMPLATE_DIRS = (
+#    # Put strings here, like "/home/html/django_templates"
+#    # Always use forward slashes, even on Windows.
+#    # Don't forget to use absolute paths, not relative paths.
+#    TEMPLATE_DIR,
+# )
 
 # Application definition
 INSTALLED_APPS = (
@@ -119,8 +117,31 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'twitter_handler',
-    'social.apps.django_app.default'
+    'social.apps.django_app.default',
 )
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            TEMPLATE_DIR
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 # API framework
 REST_FRAMEWORK = {
