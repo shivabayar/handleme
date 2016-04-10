@@ -38,10 +38,12 @@ DATABASES = {
     }
 }
 
-DATABASES['default'].update(db_from_env)
+# Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 DEBUG = True
@@ -155,36 +157,3 @@ REST_FRAMEWORK = {
         ),
     'PAGE_SIZE': 10
 }
-
-# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
-#
-# SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE = True
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
-#     'https://www.googleapis.com/auth/userinfo.email',
-#     'https://www.googleapis.com/auth/userinfo.profile',
-#     'https://www.googleapis.com/auth/gmail.readonly'
-# ]
-#
-# SOCIAL_AUTH_AUTHENTICATION_BACKENDS = (
-#     'social.backends.google.GoogleOAuth2',
-# )
-#
-# SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/register.html'
-# SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
-#
-# TEMPLATE_CONTEXT_PROCESSORS = (
-#     'social.apps.django_app.context_processors.backends',
-#     'social.apps.django_app.context_processors.login_redirect',
-#     'django.contrib.auth.context_processors.auth',
-# )
-#
-# AUTHENTICATION_BACKENDS = (
-#    'social.backends.google.GoogleOAuth2',
-#    'django.contrib.auth.backends.ModelBackend'
-# )
-#
-# SOCIAL_AUTH_GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {
-#     'access_type': 'offline',
-#     'approval_prompt': 'auto'
-# }
