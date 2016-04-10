@@ -63,7 +63,7 @@ USE_L10N = True
 
 USE_TZ = True
 #
-# STATIC_ROOT = os.path.join(BASE_DIR, 'twitter_handler', 'collected')
+STATIC_ROOT = os.path.join(BASE_DIR, 'twitter_handler', 'collected')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -157,3 +157,4 @@ REST_FRAMEWORK = {
         ),
     'PAGE_SIZE': 10
 }
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
