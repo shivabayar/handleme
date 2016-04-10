@@ -41,8 +41,8 @@ class UserViewSet(APIView):
             profile_url = timeline[0].user.url
             banner_url = timeline[0].user.profile_banner_url
 
-            import pdb
-            pdb.set_trace()
+            # import pdb
+            # pdb.set_trace()
 
             response_dict = {'handler': handler,
                              'profile_pic': profile_pic,
